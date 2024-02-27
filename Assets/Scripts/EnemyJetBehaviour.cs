@@ -20,7 +20,7 @@ public class EnemyJetBehaviour : MonoBehaviour {
         nMaxHealth = 1;
         nHealth = nMaxHealth;
         speed = 1.5f;
-        maxLifetime = 5.0f;
+        maxLifetime = 3.0f;
         timer = 0.0f;
     }
 
@@ -38,7 +38,7 @@ public class EnemyJetBehaviour : MonoBehaviour {
         }
         else if(timer >= maxLifetime) {
             timer = 0.0f;
-            Debug.LogWarning("Self-destructing jet");
+            //Debug.LogWarning("Self-destructing jet");
             Destroy(this.gameObject);
         }
     }
