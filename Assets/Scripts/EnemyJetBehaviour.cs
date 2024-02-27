@@ -17,10 +17,10 @@ public class EnemyJetBehaviour : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        nMaxHealth = 5;
+        nMaxHealth = 1;
         nHealth = nMaxHealth;
         speed = 1.5f;
-        maxLifetime = 3.0f;
+        maxLifetime = 5.0f;
         timer = 0.0f;
     }
 
@@ -31,9 +31,14 @@ public class EnemyJetBehaviour : MonoBehaviour {
             transform.position += Vector3.back * Time.deltaTime * speed;
             timer += Time.deltaTime;
         }
+        else if(nHealth <= 0) {
+            timer = 0.0f;
+            Debug.LogWarning("I'm hit!");
+            Destroy(this.gameObject);
+        }
         else if(timer >= maxLifetime) {
             timer = 0.0f;
-            Debug.Log("Self-destructing jet");
+            Debug.LogWarning("Self-destructing jet");
             Destroy(this.gameObject);
         }
     }
@@ -43,6 +48,19 @@ public class EnemyJetBehaviour : MonoBehaviour {
             nHealth--;
         }
         else if(collision.gameObject.tag == "Turret") {
+            //player minus health
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            nHealth--;
+        }
+        else if (other.gameObject.tag == "Turret")
+        {
             //player minus health
             Destroy(this.gameObject);
         }
