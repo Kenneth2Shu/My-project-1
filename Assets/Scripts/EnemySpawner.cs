@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
     void Start()
     {
         _bEnemyActive = false;
-        maxLifetime = 20.0f;
+        maxLifetime = 30.0f;
         timer = 0.0f;
         spawnInterval = 3.0f;
         spawnTimer = 0.0f;

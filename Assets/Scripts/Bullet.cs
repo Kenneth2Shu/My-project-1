@@ -35,6 +35,10 @@ public class Bullet : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
-        Destroy(this.gameObject);
+        if(collision.gameObject.tag == "Enemy") {
+            Destroy(collision.gameObject);
+            Debug.Log("That's a hit!");
+            Destroy(this.gameObject);
+        }
     }
 }
